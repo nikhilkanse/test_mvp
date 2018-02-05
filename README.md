@@ -1,2 +1,2 @@
 # test_mvp
-basic design example with MVP design pattern.
+Basic design examples with MVP design pattern.

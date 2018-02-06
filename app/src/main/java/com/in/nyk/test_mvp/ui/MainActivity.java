@@ -8,14 +8,19 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.in.nyk.test_mvp.R;
+import com.in.nyk.test_mvp.component.DaggerStoreComponent;
 import com.in.nyk.test_mvp.contracter.IStore;
+import com.in.nyk.test_mvp.model.Store;
 import com.in.nyk.test_mvp.model.StoreType;
+import com.in.nyk.test_mvp.module.StoreModule;
 import com.in.nyk.test_mvp.presenter.StorePresenter;
+
+import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements IStore.View,View.OnClickListener{
 
-    private IStore.Presenter presenter;
-
+    @Inject
+    StorePresenter presenter;
     //UI properties
     private TextView messageView;
     private EditText storeNameEditText;
@@ -30,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements IStore.View,View.
         initViews();
 
         // Creates presenter
-        presenter = new StorePresenter(this);
+        DaggerStoreComponent.builder().storeModule(new StoreModule(this,new Store())).build().inject(this);
     }
 
     private void initViews() {

@@ -4,6 +4,8 @@ import com.in.nyk.test_mvp.contracter.IStore;
 import com.in.nyk.test_mvp.model.Store;
 import com.in.nyk.test_mvp.model.StoreType;
 
+import javax.inject.Inject;
+
 /**
  * Created by nikhilkanse on 05/02/18.
  */
@@ -14,8 +16,9 @@ public class StorePresenter implements IStore.Presenter {
     private IStore.View view;
     private StoreType storeType;
 
-    public StorePresenter(IStore.View view) {
-        this.store = new Store();
+    @Inject
+    public StorePresenter(IStore.View view, Store store) {
+        this.store = store;
         this.view = view;
         storeType = StoreType.StoreTypeRetail;
     }
